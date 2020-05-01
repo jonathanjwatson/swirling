@@ -1,12 +1,14 @@
 import React, { Component } from "react";
+import Form from "../components/SignUp/Form";
+import About from "../components/SignUp/About";
 
 // CLASS COMPONENT BECAUSE I WANT TO USE STATE
 // https://facebook.github.io/react/docs/lifting-state-up.html
 class SignUp extends Component {
-  state = {
-    email: "",
-    password: "",
-  };
+  //   state = {
+  //     email: "",
+  //     password: "",
+  //   };
 
   handleInputChange = (event) => {
     // Destructure event.target
@@ -18,39 +20,23 @@ class SignUp extends Component {
     });
   };
 
+  handleSubmit = (event, email, password) => {
+    event.preventDefault();
+    console.log("Email and Password: " + email + " " + password);
+  };
+
   render() {
     return (
       <div>
+        <h1>Welcome to my sign up page!</h1>
         {/* Default Bootstrap Signup Form */}
-        <form>
-          <div className="form-group">
-            <label>Email address</label>
-            {/* FORM INPUT */}
-            {/* REQUIRES name, value, onChange */}
-            <input
-              type="text"
-              className="form-control"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleInputChange}
-            />
-            <small id="emailHelp" className="form-text text-muted">
-              We'll never share your email with anyone else.
-            </small>
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              className="form-control"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleInputChange}
-            />
-          </div>
-          <button type="submit" className="btn btn-primary">
-            Submit
-          </button>
-        </form>
+        <Form
+          //   email={this.state.email}
+          //   password={this.state.password}
+          //   handleInputChange={this.handleInputChange}
+          handleSubmit={this.handleSubmit}
+        />
+        <About />
       </div>
     );
   }
